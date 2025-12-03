@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: task-mongo
+    environment:
+      - MONGO_INITDB_DATABASE=taskdb
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    restart: always
+    ports:
+      - "27017:27017"    
+  backend:
+    build: .
+    container_name: task-backend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - MONGO_URI=mongodb://root:root@mongo:27017/taskdb?authSource=admin
+      - JWT_SECRET=changeme-secret
+    depends_on:
+      - mongo
+
+
+
