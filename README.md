@@ -27,7 +27,8 @@ JWT_SECRET=changeme-secret
 1. **Install dependencies**
 
 ```bash
-cd /home/raj/Documents/task/Kumudu
+cd kumudu-task-management-api
+Public
 npm install
 ```
 
